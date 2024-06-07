@@ -95,7 +95,7 @@ describe('teste da rota de registro de usuário', () => {
                 expect(response.body.active).to.equal(true)
             })
         })
-        it('tentativa de registrar usuário com alfabeto alternativo no nome, email e senha ', () => {
+        it('tentativa de registrar usuário com alfabeto alternativo no nome, email e senha', () => {
             cy.request({
                 method: "POST",
                 url: '/api/users',
@@ -118,7 +118,7 @@ describe('teste da rota de registro de usuário', () => {
                 expect(response.body.active).to.equal(true)
             })
         })
-        it('tentativa de registrar usuário com fonte alternativa no nome e senha ', () => {
+        it('tentativa de registrar usuário com fonte alternativa no nome e senha', () => {
             cy.request({
                 method: "POST",
                 url: '/api/users',
@@ -328,24 +328,24 @@ describe('teste da rota de registro de usuário', () => {
                 });
             })
         }),
-        // it('tentativa de registrar usuário com formato inválido sem nome utilizador',()=>{
-        //     cy.request({
-        //         method: "POST",
-        //         url: '/api/users',
-        //         body: {
-        //             "name": "",
-        //             "email": registroUsuario.email,
-        //             "password": "1234567"
-        //           } ,
-        //         failOnStatusCode: true
-        //     }).then((response) => {
-        //         expect(response.status).to.be.eq(400)
-        //         expect(response.body).to.be.an('object');
-        //         cy.fixture('nomeVazio.json').then(function (nomeVazio) {
-        //           expect(response.body).to.deep.eq(nomeVazio)
-        //         });
-        //     })
-        // }),
+        it('tentativa de registrar usuário com formato inválido com fonte alternativa no email',()=>{
+            cy.request({
+                method: "POST",
+                url: '/api/users',
+                body: {
+                    "name": registroUsuario.name,
+                    "email": "🅒🅐🅝🅘🅑🅐🅛" + registroUsuario.email,
+                    "password": "1234567"
+                  } ,
+                failOnStatusCode: true
+            }).then((response) => {
+                expect(response.status).to.be.eq(400)
+                expect(response.body).to.be.an('object');
+                cy.fixture('nomeVazio.json').then(function (emailInvalido) {
+                  expect(response.body).to.deep.eq(emailInvalido)
+                });
+            })
+        }),
         it('tentativa de registrar usuário com formato inválido com emoji no email ',()=>{
             cy.request({
                 method: "POST",

@@ -50,15 +50,40 @@ Cenário: validar o tipo de usuário criado
 #   E confirmar operação
 #   Então o usuário não deverá ser cadastrado
 
-  Cenário: tentativa de registrar usuário com emoji no nome 
+Cenário: tentativa de registrar usuário com emoji no nome 
   Quando informar um novo nome contendo emoji
   E informar um novo e-mail 
   E informar uma nova senha
   E confirmar operação
   Então o usuário deverá ser cadastrado
-  Cenário: tentativa de registrar usuário com formato inválido com emoji no email 
+Cenário: tentativa de registrar usuário com emoji na senha  
+  Quando informar um novo nome 
+  E informar um novo e-mail 
+  E informar uma nova senha contendo emoji
+  E confirmar operação
+  Então o usuário deverá ser cadastrado
+Cenário: tentativa de registrar usuário com alfabeto alternativo no nome, email e senha   
+  Quando informar um novo nome contendo alfabeto alternativo
+  E informar um novo e-mail contendo alfabeto alternativo
+  E informar uma nova senha contendo alfabeto alternativo
+  E confirmar operação
+  Então o usuário deverá ser cadastrado
+Cenário: tentativa de registrar usuário com fonte alternativa no nome e senha  
+  Quando informar um novo nome contendo fonte alternativa
+  E informar um novo e-mail 
+  E informar uma nova senha contendo fonte alternativa
+  E confirmar operação
+  Então o usuário deverá ser cadastrado
+
+Cenário: tentativa de registrar usuário com formato inválido com emoji no email 
   Quando informar um nome nulo
   E informar um novo e-mail contendo emoji
+  E informar uma nova senha
+  E confirmar operação
+  Então o usuário não deverá ser cadastrado
+Cenário: tentativa de registrar usuário com formato inválido com fonte alternativa no email 
+  Quando informar um nome nulo
+  E informar um novo e-mail contendo fonte alternativa
   E informar uma nova senha
   E confirmar operação
   Então o usuário não deverá ser cadastrado
