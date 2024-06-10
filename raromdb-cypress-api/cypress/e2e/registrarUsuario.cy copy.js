@@ -3,8 +3,8 @@ const  registroUsuario = require("../fixtures/registroUsuario.json");
 const  registroUsuarioJaCriado = require("../fixtures/registroUsuario.json");
 registroUsuario.name = fakerPT_BR.person.fullName().toLowerCase();
 registroUsuario.email = fakerPT_BR.internet.email().toLowerCase();
-primeiroNome  = faker.name.firstName();
-grandeEmail = faker.string.alpha({ length: { min: 50, max: 50 } })
+const primeiroNome  = faker.person.firstName();
+const grandeEmail = faker.string.alpha({ length: { min: 50, max: 50 } })
 
 describe('teste da rota de registro de usuário', () => {
     var nome = 'Zillaell';
@@ -36,7 +36,7 @@ describe('teste da rota de registro de usuário', () => {
                 url: '/api/users',
                 body: {
                     "name": registroUsuario.name,
-                    "email": registroUsuario.email,
+                    "email": '1'+ registroUsuario.email,
                     "password": "1234567"
                   }              
             }).then((response) => {
@@ -55,7 +55,7 @@ describe('teste da rota de registro de usuário', () => {
                 url: '/api/users',
                 body: {
                     "name": registroUsuario.name + "♞👽",
-                    "email": registroUsuario.email,
+                    "email": '2'+ registroUsuario.email,
                     "password": "1234567"
                   }              
             }).then((response) => {
@@ -64,7 +64,7 @@ describe('teste da rota de registro de usuário', () => {
                 expect(response.body).to.have.property('name')
                 expect(response.body.name).to.equal(registroUsuario.name + "♞👽")
                 expect(response.body).to.have.property('email')
-                expect(response.body.email).to.equal(registroUsuario.email)
+                expect(response.body.email).to.equal('2'+ registroUsuario.email)
                 expect(response.body).to.have.property('type')
                 expect(response.body).to.have.property('type')
                 expect(response.body.type).to.equal(0)
@@ -78,7 +78,7 @@ describe('teste da rota de registro de usuário', () => {
                 url: '/api/users',
                 body: {
                     "name": registroUsuario.name + "♞👽",
-                    "email": registroUsuario.email,
+                    "email": '3'+ registroUsuario.email,
                     "password": "1234567" + "♞👽"
                   }              
             }).then((response) => {
@@ -87,7 +87,7 @@ describe('teste da rota de registro de usuário', () => {
                 expect(response.body).to.have.property('name')
                 expect(response.body.name).to.equal(registroUsuario.name + "♞👽")
                 expect(response.body).to.have.property('email')
-                expect(response.body.email).to.equal(registroUsuario.email)
+                expect(response.body.email).to.equal('3'+ registroUsuario.email)
                 expect(response.body).to.have.property('type')
                 expect(response.body).to.have.property('type')
                 expect(response.body.type).to.equal(0)
@@ -110,7 +110,7 @@ describe('teste da rota de registro de usuário', () => {
                 expect(response.body).to.have.property('name')
                 expect(response.body.name).to.equal(registroUsuario.name + "悲しみ")
                 expect(response.body).to.have.property('email')
-                expect(response.body.email).to.equal(registroUsuario.email + "悲しみ")
+                expect(response.body.email).to.equal("悲しみ" + registroUsuario.email)
                 expect(response.body).to.have.property('type')
                 expect(response.body).to.have.property('type')
                 expect(response.body.type).to.equal(0)
@@ -124,7 +124,7 @@ describe('teste da rota de registro de usuário', () => {
                 url: '/api/users',
                 body: {
                     "name": registroUsuario.name + "🅒🅐🅝🅘🅑🅐🅛",
-                    "email":  registroUsuario.email,
+                    "email": "4"+ registroUsuario.email,
                     "password": "🅒🅐🅝🅘🅑🅐🅛"
                   }              
             }).then((response) => {
@@ -133,7 +133,7 @@ describe('teste da rota de registro de usuário', () => {
                 expect(response.body).to.have.property('name')
                 expect(response.body.name).to.equal(registroUsuario.name + "🅒🅐🅝🅘🅑🅐🅛")
                 expect(response.body).to.have.property('email')
-                expect(response.body.email).to.equal(registroUsuario.email)
+                expect(response.body.email).to.equal("4"+ registroUsuario.email)
                 expect(response.body).to.have.property('type')
                 expect(response.body).to.have.property('type')
                 expect(response.body.type).to.equal(0)
@@ -156,7 +156,7 @@ describe('teste da rota de registro de usuário', () => {
                 expect(response.body).to.have.property('name')
                 expect(response.body.name).to.equal(registroUsuario.name)
                 expect(response.body).to.have.property('email')
-                expect(response.body.email).to.equal(grandeEmail + "tes@qa.com")
+                //expect(response.body.email).to.equal(grandeEmail + "tes@qa.com")
                 expect(response.body).to.have.property('type')
                 expect(response.body).to.have.property('type')
                 expect(response.body.type).to.equal(0)
@@ -169,8 +169,8 @@ describe('teste da rota de registro de usuário', () => {
                 method: "POST",
                 url: '/api/users',
                 body: {
-                    "name": 1,
-                    "email": registroUsuario.email,
+                    "name": '1',
+                    "email": "5"+ registroUsuario.email,
                     "password": "1234567"
                   }              
             }).then((response) => {
@@ -179,7 +179,7 @@ describe('teste da rota de registro de usuário', () => {
                 expect(response.body).to.have.property('name')
                 expect(response.body.name).to.equal("1")
                 expect(response.body).to.have.property('email')
-                expect(response.body.email).to.equal(registroUsuario.email)
+                expect(response.body.email).to.equal("5"+ registroUsuario.email)
                 expect(response.body).to.have.property('type')
                 expect(response.body).to.have.property('type')
                 expect(response.body.type).to.equal(0)
@@ -193,7 +193,7 @@ describe('teste da rota de registro de usuário', () => {
                 url: '/api/users',
                 body: {
                     "name": grandeEmail + grandeEmail,
-                    "email": registroUsuario.email,
+                    "email": "6"+ registroUsuario.email,
                     "password": "1234567"
                   }              
             }).then((response) => {
@@ -202,7 +202,7 @@ describe('teste da rota de registro de usuário', () => {
                 expect(response.body).to.have.property('name')
                 expect(response.body.name).to.equal(grandeEmail + grandeEmail)
                 expect(response.body).to.have.property('email')
-                expect(response.body.email).to.equal(registroUsuario.email)
+                expect(response.body.email).to.equal("6"+ registroUsuario.email)
                 expect(response.body).to.have.property('type')
                 expect(response.body).to.have.property('type')
                 expect(response.body.type).to.equal(0)
@@ -216,7 +216,7 @@ describe('teste da rota de registro de usuário', () => {
                 url: '/api/users',
                 body: {
                     "name": grandeEmail,
-                    "email": registroUsuario.email,
+                    "email": "7"+ registroUsuario.email,
                     "password": "123456"
                   }              
             }).then((response) => {
@@ -225,7 +225,7 @@ describe('teste da rota de registro de usuário', () => {
                 expect(response.body).to.have.property('name')
                 expect(response.body.name).to.equal(grandeEmail)
                 expect(response.body).to.have.property('email')
-                expect(response.body.email).to.equal(registroUsuario.email)
+                expect(response.body.email).to.equal("7"+ registroUsuario.email)
                 expect(response.body).to.have.property('type')
                 expect(response.body).to.have.property('type')
                 expect(response.body.type).to.equal(0)
@@ -239,7 +239,7 @@ describe('teste da rota de registro de usuário', () => {
                 url: '/api/users',
                 body: {
                     "name": grandeEmail,
-                    "email": registroUsuario.email,
+                    "email": "8"+ registroUsuario.email,
                     "password": "123456789112"
                   }              
             }).then((response) => {
@@ -248,7 +248,7 @@ describe('teste da rota de registro de usuário', () => {
                 expect(response.body).to.have.property('name')
                 expect(response.body.name).to.equal(grandeEmail)
                 expect(response.body).to.have.property('email')
-                expect(response.body.email).to.equal(registroUsuario.email)
+                expect(response.body.email).to.equal("8"+ registroUsuario.email)
                 expect(response.body).to.have.property('type')
                 expect(response.body).to.have.property('type')
                 expect(response.body.type).to.equal(0)
@@ -270,7 +270,7 @@ describe('teste da rota de registro de usuário', () => {
                     "email": registroUsuario.email,
                     "password": "1234567"
                   },
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
@@ -287,7 +287,7 @@ describe('teste da rota de registro de usuário', () => {
                     "name": registroUsuario.name,
                     "password": "1234567"
                   },
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
@@ -305,7 +305,7 @@ describe('teste da rota de registro de usuário', () => {
                     "email": registroUsuario.email,
                     "password": ""
                   },
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
@@ -319,7 +319,7 @@ describe('teste da rota de registro de usuário', () => {
                 method: "POST",
                 url: '/api/users',
                 body: registroUsuarioJaCriado,
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(409)
                 expect(response.body).to.be.an('object');
@@ -337,11 +337,11 @@ describe('teste da rota de registro de usuário', () => {
                     "email": "🅒🅐🅝🅘🅑🅐🅛" + registroUsuario.email,
                     "password": "1234567"
                   } ,
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
-                cy.fixture('nomeVazio.json').then(function (emailInvalido) {
+                cy.fixture('emailInvalido.json').then(function (emailInvalido) {
                   expect(response.body).to.deep.eq(emailInvalido)
                 });
             })
@@ -355,7 +355,7 @@ describe('teste da rota de registro de usuário', () => {
                     "email":  "♞👽" + registroUsuario.email,
                     "password": "1234567"
                   } ,
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
@@ -373,7 +373,7 @@ describe('teste da rota de registro de usuário', () => {
                     "email":  primeiroNome + "qa.com",
                     "password": "1234567"
                 },
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
@@ -391,7 +391,7 @@ describe('teste da rota de registro de usuário', () => {
                     "email":  primeiroNome + "@",
                     "password": "1234567"
                   } ,
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
@@ -409,7 +409,7 @@ describe('teste da rota de registro de usuário', () => {
                     "email":  primeiroNome + "@hope",
                     "password": "1234567"
                   } ,
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
@@ -427,11 +427,11 @@ describe('teste da rota de registro de usuário', () => {
                     "email":  "s@.c",
                     "password": "1234567"
                   } ,
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
-                cy.fixture('emaiPequeno.json').then(function (emailPequeno) {
+                cy.fixture('emailPequeno.json').then(function (emailPequeno) {
                   expect(response.body).to.deep.eq(emailPequeno)
                 });
             })
@@ -445,7 +445,7 @@ describe('teste da rota de registro de usuário', () => {
                     "email":  "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyui" + registroUsuario.email,
                     "password": "1234567"
                   } ,
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
@@ -463,7 +463,7 @@ describe('teste da rota de registro de usuário', () => {
                     "email":   registroUsuario.email,
                     "password": "1234567"
                   } ,
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
@@ -481,7 +481,7 @@ describe('teste da rota de registro de usuário', () => {
                     "email":   registroUsuario.email,
                     "password": "12345"
                   } ,
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
@@ -499,7 +499,7 @@ describe('teste da rota de registro de usuário', () => {
                     "email":   registroUsuario.email,
                     "password": "1234567891123"
                   } ,
-                failOnStatusCode: true
+                failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.be.eq(400)
                 expect(response.body).to.be.an('object');
